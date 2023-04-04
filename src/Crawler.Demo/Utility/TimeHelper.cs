@@ -1,5 +1,4 @@
-﻿using System;
-using TimeZoneConverter;
+﻿using TimeZoneConverter;
 
 namespace Async.Programming;
 
