@@ -180,7 +180,7 @@ public class CrawlerService
     public async Task Execute(string deviceId, string deviceIp, string ip, int port, string userName, string passWord)
     {
         _logger.LogInformation("[DeviceId]{deviceId} the task job is starting...", deviceId);
-        SshClient sshClient = null;
+        SshClient? sshClient = null;
 
         try
         {
@@ -229,7 +229,7 @@ public class CrawlerService
         List<SpectroDailyEntity> spectroDailyList = new();
 
         // wget url
-        SshCommand cmd = null;
+        SshCommand? cmd = null;
         await Task.Run(() => { cmd = sshClient.RunCommand(wGet); }).WaitAsync(TimeSpan.FromMinutes(1.5));
         if (cmd == null)
         {
@@ -291,7 +291,7 @@ public class CrawlerService
 
         // wget url
         string wGet = string.Format(DETAIL_URL, deviceIp, spectroDaily.Sd_Url);
-        SshCommand cmd = null;
+        SshCommand? cmd = null;
         await Task.Run(() => { cmd = sshClient.RunCommand(wGet); }).WaitAsync(TimeSpan.FromMinutes(1.5));
         if (cmd == null)
         {
