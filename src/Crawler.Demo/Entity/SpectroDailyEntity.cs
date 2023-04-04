@@ -26,7 +26,7 @@ public class SpectroDailyEntity
     [Index("IX_DateTime", IsUnique = false, Order = 0)]
     [MaxLength(64)]
     [Description("The device Id.")]
-    public string Sd_DeviceId { get; set; }
+    public string? Sd_DeviceId { get; set; }
 
     /// <summary>
     /// The business date time.

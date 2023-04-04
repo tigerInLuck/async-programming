@@ -37,8 +37,13 @@ public class CrawlerService
     /// Start a scheduler for devices.
     /// </summary>
     /// <returns></returns>
-    public async Task StartAsync()
+    public async Task StartAsync(List<DeviceInfoEntity> deviceEntities)
     {
+        foreach (DeviceInfoEntity deviceEntity in deviceEntities)
+        {
+            await CreateTaskAsync(deviceEntity);
+            await Task.Delay(500);
+        }
     }
 
     /// <summary>
@@ -219,7 +224,7 @@ public class CrawlerService
         }
     }
 
-    private async Task<List<SpectroDailyEntity>> FetchDailyAsync(SshClient sshClient, string deviceId, string deviceIp, string wGet)
+    private async Task<List<SpectroDailyEntity>> FetchDailyAsync(SshClient sshClient, string? deviceId, string deviceIp, string wGet)
     {
         List<SpectroDailyEntity> spectroDailyList = new();
 
@@ -280,7 +285,7 @@ public class CrawlerService
         return spectroDailyList;
     }
 
-    private async Task<List<SpectroDetailEntity>> FetchDetailsAsync(SpectroDailyEntity spectroDaily, SshClient sshClient, string deviceId, string deviceIp)
+    private async Task<List<SpectroDetailEntity>> FetchDetailsAsync(SpectroDailyEntity spectroDaily, SshClient sshClient, string? deviceId, string deviceIp)
     {
         List<SpectroDetailEntity> spectroDetailList = new();
 
